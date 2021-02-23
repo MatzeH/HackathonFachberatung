@@ -1,0 +1,43 @@
+﻿using COPRA.COPRA6.Controls;
+using COPRA.COPRA6.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace COPRA.COPRA6.FachberatungCore.core
+{
+    public class MissingName
+    {
+        public ConfigService config = new ConfigService();
+
+        public IEnumerable<string> GetVentilationDetails(string ventilationVarId, string caseId)
+        {
+            yield return null;
+        }
+
+        public void SetValueFromConfigList(Button button)
+        {
+            string name = button.Name;
+            string[] configs = config.GetConfigList("CO_WeißDerTeufelWas").Where(list => list[1].Equals(name)).FirstOrDefault();
+            Variable variable = Variable.Get("CO_Variable");
+            ITransaction transaction = button.GetTransaction();
+            Data.Object parent = transaction.GetRegistredObject(variable.Parent);
+            Value value = (Value)transaction.GetLastValue(variable, parent);
+            Value new_y;
+
+            if (value == null)
+            {
+                new_y = new Value(transaction, variable, parent);
+            }
+            else
+            {
+                new_y = transaction.Modify(value);
+            }
+
+            new_y.val = configs[7];
+            transaction.Commit();
+        }
+    }
+}

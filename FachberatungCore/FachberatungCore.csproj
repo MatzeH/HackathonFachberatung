@@ -187,6 +187,7 @@
   <ItemGroup>
     <Compile Include="core\ReusableLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\MissingName.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
