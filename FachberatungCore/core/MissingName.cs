@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static COPRA.COPRA6.FachberatungCore.core.ConfigService;
 
 namespace COPRA.COPRA6.FachberatungCore.core
 {
@@ -20,7 +21,7 @@ namespace COPRA.COPRA6.FachberatungCore.core
         public void SetValueFromConfigList(Button button)
         {
             string name = button.Name;
-            string[] configs = config.GetConfigList("CO_WeißDerTeufelWas").Where(list => list[1].Equals(name)).FirstOrDefault();
+            ConfigList configs = config.GetConfigList("CO_WeißDerTeufelWas").Where(list => list.Name.Equals(name)).FirstOrDefault();
             Variable variable = Variable.Get("CO_Variable");
             ITransaction transaction = button.GetTransaction();
             Data.Object parent = transaction.GetRegistredObject(variable.Parent);
@@ -36,7 +37,7 @@ namespace COPRA.COPRA6.FachberatungCore.core
                 new_y = transaction.Modify(value);
             }
 
-            new_y.val = configs[7];
+            new_y.val = configs.Text;
             transaction.Commit();
         }
     }

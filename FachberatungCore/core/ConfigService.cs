@@ -8,8 +8,28 @@ namespace COPRA.COPRA6.FachberatungCore.core
 {
     public class ConfigService
     {
+
+        public class ConfigList
+        {
+            public string Name { get; private set; }
+            public string Text { get; private set; }
+            public string Abbrev { get; private set; }
+            public string Add1 { get; private set; }
+            public string Add2 { get; private set; }
+            public string Add3 { get; private set; }
+            public string Add4 { get; private set; }
+            public string Add5 { get; private set; }
+            public string Sort { get; private set; }
+            public string ID { get; private set; }
+
+            public ConfigList(string name, string text, string abbrev, string add1, string add2, string add3, string add4, string add5, string sort, string id)
+            {
+                this.Name = name;
+            }
+
+        }
         //Gibt Konfigurationsliste zurück
-        public List<string[]> GetConfigList(string lvListName)
+        public List<ConfigList> GetConfigList(string lvListName)
         {
             /*
             result[0] = "Name";
@@ -24,7 +44,7 @@ namespace COPRA.COPRA6.FachberatungCore.core
             result[9] = "ID";
             */
 
-            System.Collections.Generic.List<String[]> result = null;
+            System.Collections.Generic.List<string[]> result = null;
 
             System.Collections.Generic.List<String[]> listen;
             if (Base.Context.Parameters.ContainsKey("Konfig_Listen"))
@@ -87,7 +107,12 @@ namespace COPRA.COPRA6.FachberatungCore.core
                 }
             }
 
-            return result;
+            return Convert(result);
+        }
+
+        private List<ConfigList> Convert(List<string[]> result)
+        {
+            return result.Select(x => new ConfigList(x[0], x[1], x[0], x[1], x[0], x[1], x[0], x[1], x[0], x[1])).ToList();
         }
     }
 }
