@@ -31,19 +31,6 @@ namespace COPRA.COPRA6.FachberatungCore.core
         //Gibt Konfigurationsliste zurück
         public List<ConfigList> GetConfigList(string lvListName)
         {
-            /*
-            result[0] = "Name";
-            result[1] = "Text";
-            result[2] = "Abbrev";
-            result[3] = "Add1";
-            result[4] = "Add2";
-            result[5] = "Add3";
-            result[6] = "Add4";
-            result[7] = "Add5";
-            result[8] = "Sort";
-            result[9] = "ID";
-            */
-
             System.Collections.Generic.List<string[]> result = null;
 
             System.Collections.Generic.List<String[]> listen;
